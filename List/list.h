@@ -12,7 +12,7 @@ typedef struct
 Node
 {
     void* elementP;
-    int index;
+    __int64 index;
 
     struct Node* next;
 
@@ -23,7 +23,7 @@ typedef struct
 List
 {
     Node* rootNode;
-    int length;
+    __int64 length;
 
     void (*delete)(struct List*, int index);
     void* (*get)(struct List*, int index);
