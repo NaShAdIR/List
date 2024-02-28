@@ -1,7 +1,7 @@
 #include "list.h"
 
 
-static Node* 
+internal Node*
 getNode(
     List* instance, 
     int index
@@ -20,7 +20,7 @@ getNode(
 }
 
 
-static void 
+internal void
 __restructuring(
     List* instance,
     int index, 
@@ -39,7 +39,7 @@ __restructuring(
 }
 
 
-static void 
+internal void
 _del(List* instance, Node* node)
 {
     if (node->next)
@@ -69,7 +69,7 @@ _del(List* instance, Node* node)
 }
 
 
-static void 
+internal void
 delete(
     List* instance, 
     int index
@@ -83,7 +83,7 @@ delete(
 }
 
 
-static void 
+internal void
 insert(
     List* instance,
     void* elementP, 
@@ -94,7 +94,7 @@ insert(
 }
 
 
-static _Bool
+internal _Bool
 append(
     List* instance, 
     void* elementP
@@ -138,7 +138,7 @@ append(
 }
 
 
-static void* 
+internal void*
 get(List* instance, int index)
 {
     return getNode(instance, index)->elementP;
