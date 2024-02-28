@@ -4,7 +4,7 @@
 internal Node*
 getNode(
     List* instance, 
-    int index
+    __int64 index
 )
 {
     if (index < 0 || index > instance->length - 1)
@@ -23,7 +23,7 @@ getNode(
 internal void
 _restructuring(
     List* instance,
-    int index, 
+    __int64 index,
     void* value
 )
 {
@@ -72,7 +72,7 @@ _del(List* instance, Node* node)
 internal void
 delete(
     List* instance, 
-    int index
+    __int64 index
 )
 {
     Node* node = getNode(instance, index);
@@ -87,7 +87,7 @@ internal void
 insert(
     List* instance,
     void* elementP, 
-    int index
+    __int64 index
 )
 {
 
@@ -108,7 +108,6 @@ append(
             instance->rootNode->elementP = elementP;
             instance->rootNode->index = 0x0;
             instance->rootNode->next = 0x0;
-            
             instance->length++;
 
             return true;
@@ -139,7 +138,7 @@ append(
 
 
 internal void*
-get(List* instance, int index)
+get(List* instance, __int64 index)
 {
     return getNode(instance, index)->elementP;
 }
