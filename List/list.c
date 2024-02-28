@@ -21,7 +21,7 @@ getNode(
 
 
 internal void
-__restructuring(
+_restructuring(
     List* instance,
     int index, 
     void* value
@@ -44,7 +44,7 @@ _del(List* instance, Node* node)
 {
     if (node->next)
     {
-        __restructuring(
+        _restructuring(
             instance,
             node->index,
             node->next
@@ -58,7 +58,7 @@ _del(List* instance, Node* node)
     }
     else
     {
-        __restructuring(
+        _restructuring(
             instance,
             node->index,
             0x0
