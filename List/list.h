@@ -5,6 +5,7 @@
 
 #define true  0x1
 #define false 0x0
+#define internal static
 
 
 typedef struct
