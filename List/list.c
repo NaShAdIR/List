@@ -4,26 +4,27 @@
 internal Node*
 getNode(
     List* instance, 
-    __int64 index
+    int64 index
 )
 {
+    Node* node = instance->rootNode;    
     if (index < 0 || index > instance->length - 1)
     {
         return 0x0;
     }
-    Node* node = instance->rootNode;
     while (node->index != index)
     {
         node = node->next;
     }
+
     return node;
 }
 
 
 internal void
-_restructuring(
+restructuring(
     List* instance,
-    __int64 index,
+    int64 index,
     void* value
 )
 {
@@ -40,16 +41,16 @@ _restructuring(
 
 
 internal void
-_del(List* instance, Node* node)
+del(List* instance, Node* node)
 {
     if (node->next)
     {
-        _restructuring(
+        Node* tempNode = node;
+        restructuring(
             instance,
             node->index,
             node->next
         );
-        Node* tempNode = node;
         while (tempNode->next)
         {
             tempNode->next->index--;
@@ -58,7 +59,7 @@ _del(List* instance, Node* node)
     }
     else
     {
-        _restructuring(
+        restructuring(
             instance,
             node->index,
             0x0
@@ -72,13 +73,13 @@ _del(List* instance, Node* node)
 internal void
 delete(
     List* instance, 
-    __int64 index
+    int64 index
 )
 {
     Node* node = getNode(instance, index);
     if (node)
     {
-        _del(instance, node);
+        del(instance, node);
     }
 }
 
@@ -87,7 +88,7 @@ internal void
 insert(
     List* instance,
     void* elementP, 
-    __int64 index
+    int64 index
 )
 {
 
@@ -112,33 +113,31 @@ append(
 
             return true;
         }
-
-        return false;
     }
-
-    Node* lastNode = getNode(
-        instance, 
-        instance->length - 1
-    );
-    Node* newNode = malloc(sizeof(Node));
-    if (newNode)
+    else
     {
-        newNode->elementP = elementP;
-        newNode->index = (lastNode->index + 1);
-        newNode->next = 0x0;
+        Node* lastNode = getNode(instance, instance->length - 1);
+        Node* newNode = malloc(sizeof(Node));
+        if (newNode && lastNode)
+        {
+            newNode->elementP = elementP;
+            newNode->index = (lastNode->index + 1);
+            newNode->next = 0x0;
 
-        lastNode->next = newNode;
-        instance->length++;
+            lastNode->next = newNode;
+            instance->length++;
 
-        return true;
+            return true;
+        }
+        free(newNode);
     }
-
+    
     return false;
 }
 
 
 internal void*
-get(List* instance, __int64 index)
+get(List* instance, int64 index)
 {
     return getNode(instance, index)->elementP;
 }
