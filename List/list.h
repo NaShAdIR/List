@@ -7,12 +7,15 @@
 #define false 0x0
 #define internal static
 
+#define int64 __int64
+#define int8  __int8
+
 
 typedef struct
 Node
 {
     void* elementP;
-    __int64 index;
+    int64 index;
 
     struct Node* next;
 
@@ -23,11 +26,11 @@ typedef struct
 List
 {
     Node* rootNode;
-    __int64 length;
+    int64 length;
 
-    void (*delete)(struct List*, int index);
-    void* (*get)(struct List*, int index);
-    void (*insert)(struct List*, void* elementP, int index);
+    void (*delete)(struct List*, int64 index);
+    void* (*get)(struct List*, int64 index);
+    void (*insert)(struct List*, void* elementP, int64 index);
     _Bool (*append)(struct List*, void* elementP);
 
 } List;
