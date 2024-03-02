@@ -3,11 +3,11 @@
 
 internal Node*
 getNode(
-    List* instance, 
+    List* instance,
     int64 index
 )
 {
-    Node* node = instance->rootNode;    
+    Node* node = instance->rootNode;
     if (index < 0 || index > instance->length - 1)
     {
         return 0x0;
@@ -71,8 +71,8 @@ del(List* instance, Node* node)
 
 
 internal void
-delete(
-    List* instance, 
+remove(
+    List* instance,
     int64 index
 )
 {
@@ -87,7 +87,7 @@ delete(
 internal void
 insert(
     List* instance,
-    void* elementP, 
+    void* elementP,
     int64 index
 )
 {
@@ -97,7 +97,7 @@ insert(
 
 internal _Bool
 append(
-    List* instance, 
+    List* instance,
     void* elementP
 )
 {
@@ -131,7 +131,7 @@ append(
         }
         free(newNode);
     }
-    
+
     return false;
 }
 
@@ -139,16 +139,22 @@ append(
 internal void*
 get(List* instance, int64 index)
 {
-    return getNode(instance, index)->elementP;
+    Node* node = getNode(instance, index);
+    if (node)
+    {
+        return node->elementP;
+    }
+    return 0x0;
 }
 
 
-void 
+void
 init(List* instance)
 {
     instance->length = 0x0;
+    instance->rootNode = 0x0;
 
-    instance->delete = delete;
+    instance->remove = remove;
     instance->insert = insert;
     instance->append = append;
     instance->get = get;
