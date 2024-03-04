@@ -1,5 +1,5 @@
-#ifndef _LIST_
-#define _LIST_
+#ifndef LISTH
+#define LISTH
 
 #include <malloc.h>
 
